@@ -1,0 +1,41 @@
+{
+  "name": "tree-sitter-aggressor",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for Cobalt Strike Aggressor Script (.cna), built on the Sleep language",
+  "license": "MIT",
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "aggressor",
+    "sleep",
+    "cobalt-strike",
+    "cna"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/tree-sitter-aggressor"
+  },
+  "main": "bindings/node",
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "queries/*.scm",
+    "src/**",
+    "bindings/node/*"
+  ],
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "parse": "tree-sitter parse",
+    "test": "tree-sitter test"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.27.0"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.aggressor",
+      "file-types": ["cna"],
+      "highlights": ["queries/highlights.scm"]
+    }
+  ]
+}

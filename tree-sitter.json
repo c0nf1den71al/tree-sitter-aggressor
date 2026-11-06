@@ -1,0 +1,25 @@
+{
+  "grammars": [
+    {
+      "name": "aggressor",
+      "camelcase": "Aggressor",
+      "scope": "source.aggressor",
+      "file-types": ["cna"],
+      "path": ".",
+      "highlights": ["queries/highlights.scm"]
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for Cobalt Strike Aggressor Script (Sleep) .cna files",
+    "links": {
+      "repository": "https://github.com/your-org/tree-sitter-aggressor"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "node": true,
+    "rust": true
+  }
+}

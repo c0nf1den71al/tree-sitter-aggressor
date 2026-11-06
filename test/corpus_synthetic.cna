@@ -1,0 +1,76 @@
+# Synthetic coverage test (not an official example)
+import java.awt.*;
+import aggressor.windows.BeaconConsole;
+
+global('%state @list $count');
+
+sub demo {
+    local('$i $x %opts');
+    $count = 0x1F;
+    $x = 3.14;
+
+    for ($i = 0; $i < 10; $i++) {
+        $count += $i;
+    }
+
+    while ($count > 0) {
+        $count--;
+    }
+
+    while $line (readln($handle)) {
+        println($line);
+    }
+
+    foreach $k => $v (%opts) {
+        println("$k = $v $+ !");
+    }
+
+    if ($x >= 1.0 && $x ne "") {
+        return \$x;
+    }
+    else if ("*abc*" iswm $x) {
+        $count = [new ActionEvent: $x, 0, "hi"];
+    }
+    else {
+        $count = [$obj method: $x, 2];
+    }
+
+    try {
+        halt;
+    }
+    catch $err {
+        berror($1, "oops $err");
+    }
+
+    ($a, $b) = split(",", "1,2");
+    return iff($a eq $b, &demo, {
+        blog($1, "closure $[10]a done");
+    });
+}
+
+on beacon_initial {
+    demo($1);
+}
+
+alias go { demo($1); }
+ssh_alias sgo { demo($1); }
+
+command mycmd {
+    local('$c');
+    $c = [CommonUtils randomPort];
+}
+
+set USERAGENT { return "Mozilla/5.0"; }
+
+popup beacon {
+    menu "&Access" {
+        item "&Dump" { bhashdump($1); }
+        separator();
+        item "&Elevate" { prompt_text("args", "", {}); }
+    }
+    menubar "Reporting" reports { }
+}
+
+bind Ctrl+K {
+    println("bound");
+}
